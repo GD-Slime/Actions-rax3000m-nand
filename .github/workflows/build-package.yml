@@ -144,9 +144,7 @@ jobs:
       id: compile
       run: |
         cd openwrt
-        echo -e "$(($(nproc)+1)) thread compile"
-        make ./feeds/smpackage/luci-app-passwall/compile -j$(($(nproc)+1)) || make ./feeds/smpackage/luci-app-passwall/compile -j$(nproc) || make ./feeds/smpackage/luci-app-passwall/compile -j1 V=s
-        echo "status=success" >> $GITHUB_OUTPUT
+        make feeds/smpackage/luci-app-passwall/compile V=99
 
     - name: 空间使用情况
       if: (!cancelled())
