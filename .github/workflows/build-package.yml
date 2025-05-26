@@ -15,18 +15,7 @@ permissions: write-all
 
 on:
   workflow_dispatch:
-    inputs:
-      USE_MTWIFI_CFG:
-        description: 'Use mtwifi-cfg'
-        required: true
-        default: true
-        type: boolean
-      USE_NX30PRO_EEPROM:
-        description: 'Use nx30pro eeprom'
-        required: true
-        default: true
-        type: boolean
-
+    
 env:
   REPO_URL: https://github.com/GD-Slime/immortalwrt-mt798x
   FREE_DISK_SH: scripts/free_disk_space.sh
