@@ -15,7 +15,7 @@ permissions: write-all
 
 on:
   workflow_dispatch:
-    
+
 env:
   REPO_URL: https://github.com/GD-Slime/immortalwrt-mt798x
   FREE_DISK_SH: scripts/free_disk_space.sh
@@ -115,11 +115,6 @@ jobs:
         [ -e files ] && mv files openwrt/files
         cat configs/rax3000m-emmc_mtksdk.config >> openwrt/.config
 
-    - name: 设置无线控制界面样式
-      if: env.USE_MTWIFI_CFG == 'true'
-      run: |
-        sed -i '/CONFIG_PACKAGE_luci-app-mtk=y/{N;N;N;s/CONFIG_PACKAGE_luci-app-mtk=y\nCONFIG_PACKAGE_luci-i18n-mtk-zh-cn=y\nCONFIG_PACKAGE_wifi-profile=y\nCONFIG_WIFI_NORMAL_SETTING=y/CONFIG_PACKAGE_lua-cjson=y\nCONFIG_PACKAGE_luci-app-mtwifi-cfg=y\nCONFIG_PACKAGE_luci-i18n-mtwifi-cfg-zh-cn=y\nCONFIG_PACKAGE_mtwifi-cfg=y/}' openwrt/.config
-
     - name: 下载文件
       run: |
         cd openwrt
@@ -133,7 +128,7 @@ jobs:
       id: compile
       run: |
         cd openwrt
-        make feeds/smpackage/luci-app-passwall/compile V=99
+        make package/luci-app-passwall/luci-app-passwall/compile V=99
 
     - name: 空间使用情况
       if: (!cancelled())
