@@ -124,11 +124,18 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
+    - name: 编译工具链中
+      id: compile_toolchain
+      run: |
+        cd openwrt
+        make tools/install V=s -j$(grep processor /proc/cpuinfo | wc -l)
+        make toolchain/install V=s -j$(grep processor /proc/cpuinfo | wc -l)
+
     - name: 编译固件中
       id: compile
       run: |
         cd openwrt
-        make package/luci-app-passwall/luci-app-passwall/compile V=99
+        make package/luci-app-passwall/luci-app-passwall/compile V=99 -j$(grep processor /proc/cpuinfo | wc -l)
 
     - name: 空间使用情况
       if: (!cancelled())
