@@ -23,7 +23,7 @@ on:
         type: boolean
 
 env:
-  REPO_URL: https://github.com/GD-Slime/immortalwrt-mt798x
+  REPO_URL: https://github.com/hanwckf/immortalwrt-mt798x
   CONFIG_NAME: 360t7.config
   FREE_DISK_SH: scripts/free_disk_space.sh
   ENV_SH: scripts/environment.sh
@@ -142,7 +142,7 @@ jobs:
       run: |
         cd openwrt
         echo -e "$(($(nproc)+1)) thread compile"
-        make -j$(($(nproc)+1)) || make -j$(nproc) || make -j1 V=s
+        make -j$(($(nproc)+1))
         echo "status=success" >> $GITHUB_OUTPUT
 
     - name: 空间使用情况
