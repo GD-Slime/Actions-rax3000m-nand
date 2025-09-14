@@ -111,6 +111,9 @@ jobs:
         git clone https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
         git clone https://github.com/xiaorouji/openwrt-passwall-packages package/luci-app-passwall-packages
 
+        # mosdns的CGO补丁
+        sed -i '38i\GO_PKG_TARGET_VARS:=$(filter-out CGO_ENABLED=%,$(GO_PKG_TARGET_VARS)) CGO_ENABLED=1' packages/net/mosdns/Makefile
+
         # 重新安装一次 防止依赖错误 强制override保证版本比immortalwrt官方新
         ./scripts/feeds install -a -f
         chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH
