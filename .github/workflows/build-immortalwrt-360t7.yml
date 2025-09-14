@@ -23,7 +23,7 @@ on:
         type: boolean
 
 env:
-  REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x
+  REPO_URL: https://github.com/GD-Slime/immortalwrt-mt798x
   CONFIG_NAME: 360t7.config
   FREE_DISK_SH: scripts/free_disk_space.sh
   ENV_SH: scripts/environment.sh
@@ -101,18 +101,18 @@ jobs:
         rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
 
         # 安装 golang 1.23 使用kenzok8源
-        rm -rf feeds/packages/lang/golang
-        git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
+        # rm -rf feeds/packages/lang/golang
+        # git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
         # 替换一下passwall和xray-core为官方源而非immortalwrt的源
-        rm -rf feeds/luci/applications/luci-app-passwall/
-        rm -rf feeds/packages/net/xray-core/
-        rm -rf feeds/packages/net/xray-plugin/
-        git clone https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
-        git clone https://github.com/xiaorouji/openwrt-passwall-packages package/luci-app-passwall-packages
+        # rm -rf feeds/luci/applications/luci-app-passwall/
+        # rm -rf feeds/packages/net/xray-core/
+        # rm -rf feeds/packages/net/xray-plugin/
+        # git clone https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
+        # git clone https://github.com/xiaorouji/openwrt-passwall-packages package/luci-app-passwall-packages
 
         # mosdns的CGO补丁
-        sed -i '38i\GO_PKG_TARGET_VARS:=$(filter-out CGO_ENABLED=%,$(GO_PKG_TARGET_VARS)) CGO_ENABLED=1' feeds/packages/net/mosdns/Makefile
+        # sed -i '38i\GO_PKG_TARGET_VARS:=$(filter-out CGO_ENABLED=%,$(GO_PKG_TARGET_VARS)) CGO_ENABLED=1' feeds/packages/net/mosdns/Makefile
 
         # 重新安装一次 防止依赖错误 强制override保证版本比immortalwrt官方新
         ./scripts/feeds install -a -f
