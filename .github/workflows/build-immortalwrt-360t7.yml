@@ -188,7 +188,7 @@ jobs:
           echo "- 使用 MTK SDK 无线控制界面" >> release.txt
           wlan_luci_interface="luci-app-mtk"
         fi
-        release_tag=$(date +"%Y.%m.%d-mt7981-cmcc_rax3000m-nand-${wlan_luci_interface}-${eeprom_status}")
+        release_tag=$(date +"%Y.%m.%d-mt7981-360t7}")
         echo "release_tag=${release_tag}" >> $GITHUB_OUTPUT
         echo "status=success" >> $GITHUB_OUTPUT
 
