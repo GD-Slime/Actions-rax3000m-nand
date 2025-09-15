@@ -142,7 +142,7 @@ jobs:
       run: |
         cd openwrt
         echo -e "$(($(nproc)+1)) thread compile"
-        make -j$(($(nproc)+1)) V=s
+        make -j$(($(nproc)+1))
         echo "status=success" >> $GITHUB_OUTPUT
 
     - name: 空间使用情况
